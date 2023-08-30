@@ -54,7 +54,7 @@ void high_power(void *args)
 {
 
     slp_config_t config = {
-        .receive_windows = 60,
+        .receive_windows = 1000,
         .retries = 10,
         .device_id = SPACE_ID,
         .ack_word = 0x24,
@@ -67,6 +67,7 @@ void high_power(void *args)
     if ((detected && !sensor.taken) || (!detected && sensor.taken))
     {
         sensor.taken = !sensor.taken;
+        ESP_LOGI(TAG, "taken: %d", sensor.taken);
         slp_send_bool("taken", sensor.taken);
     }
 
