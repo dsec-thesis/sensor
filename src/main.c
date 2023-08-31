@@ -55,7 +55,7 @@ void high_power(void *args)
 
     slp_config_t config = {
         .receive_windows = 1000,
-        .retries = 10,
+        .retries = 5,
         .device_id = SPACE_ID,
         .ack_word = 0x24,
 
