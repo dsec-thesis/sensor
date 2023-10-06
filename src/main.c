@@ -76,6 +76,27 @@ void high_power(void *args)
     esp_deep_sleep_start();
 }
 
+void load_test(void *args)
+{
+    slp_config_t config = {
+        .receive_windows = 1000,
+        .retries = 5,
+        .device_id = SPACE_ID,
+        .ack_word = 0x24,
+
+    };
+    slp_init(config);
+    bool taken = false;
+
+    while (1)
+    {
+        taken = !taken;
+        ESP_LOGI(TAG, "sending...");
+        slp_send_bool("taken", taken);
+    }
+}
+
+
 void app_main()
 {
     switch (sensor.power_mode)
