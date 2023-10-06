@@ -64,7 +64,7 @@ void high_power(void *args)
     laser_init();
 
     bool detected = laser_detect_nearby_object(1000);
-    if ((detected && !sensor.taken) || (!detected && sensor.taken))
+    if (detected != sensor.taken)
     {
         sensor.taken = !sensor.taken;
         ESP_LOGI(TAG, "taken: %d", sensor.taken);
